@@ -3,18 +3,14 @@ package ar.com.calculadora;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.R.xml;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-
-
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    String message = "0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    Double num1,num2,resultado;
-    String operador;
+    Double num1,num2, result;
+    String operator;
 
 
 
@@ -39,147 +35,161 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickIgual(View miView)
     {
-        setEnablePunto();
+        setEnablePoint();
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        num2 = Double.parseDouble(tv.getText().toString());
+        String si = (String) tv.getText();
 
-        if(operador.equals("+"))
-        {
-            resultado= num1+num2;
+        if(si.equals("")){
+
+        }else {
+            num2 = Double.parseDouble(tv.getText().toString());
+            if (num2.equals(0) && operator.equals("/")) {
+                tv.setText("Error");
+            }
+            if (operator.equals("+")) {
+                result = num1 + num2;
+            } else if (operator.equals("-")) {
+                result = num1 - num2;
+            } else if (operator.equals("*")) {
+                result = num1 * num2;
+            } else if (operator.equals("/")) {
+                result = num1 / num2;
+            }
+            tv.setText(result.toString());
         }
-        else if(operador.equals("-"))
-        {
-            resultado= num1-num2;
-        }
-        else if(operador.equals("*"))
-        {
-            resultado= num1*num2;
-        }
-        else if(operador.equals("/"))
-        {
-            resultado= num1/num2;
-        }
-        tv.setText(resultado.toString());
     }
 
-    public void onClickSuma(View miView)
+    public void onSum(View miView)
     {
-        setEnablePunto();
-        operador="+";
-        onClickOperacionCapturaNumero1(miView);
+        TextView tv = (TextView) findViewById(R.id.screen);
+        String a = (String) tv.getText();
+        if(a.equals("")) {
+
+        }
+        else {
+            operator = "+";
+            onClickOperacionCapturaNumero1(miView);
+            setEnablePoint();
+        }
     }
-    public void onClickResta(View miView)
+    public void onRest(View miView)
     {
-        operador="-";
-        onClickOperacionCapturaNumero1(miView);
-        setEnablePunto();
+        TextView tv = (TextView) findViewById(R.id.screen);
+        String a = (String) tv.getText();
+        if(a.equals("")) {
+
+        }
+        else {
+            operator = "-";
+            onClickOperacionCapturaNumero1(miView);
+            setEnablePoint();
+        }
     }
-    public void onClickMultiplicacion(View miView)
+    public void onMultiplication(View miView)
     {
-        operador="*";
-        onClickOperacionCapturaNumero1(miView);
-        setEnablePunto();
-    }
-    public void onClickDivision(View miView)
+       TextView tv = (TextView) findViewById(R.id.screen);
+        String a = (String) tv.getText();
+        if(a.equals("")) {
+
+        }
+       else {
+            operator = "*";
+            onClickOperacionCapturaNumero1(miView);
+            setEnablePoint();
+         }
+        }
+    public void onDivision(View miView)
     {
-        operador="/";
-        onClickOperacionCapturaNumero1(miView);
-        setEnablePunto();
+        TextView tv = (TextView) findViewById(R.id.screen);
+        String a = (String) tv.getText();
+        if(a.equals("")) {
+
+        }
+        else {
+            operator = "/";
+            onClickOperacionCapturaNumero1(miView);
+            setEnablePoint();
+        }
 
     }
 
     public void onClickBtn1(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "1");
+        tv.setText(tv.getText() + getString(R.string.butt1));
     }
     public void onClickBtn2(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "2");
+        tv.setText(tv.getText() + getString(R.string.butt2));
     }
     public void onClickBtn3(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "3");
+        tv.setText(tv.getText() + getString(R.string.butt3));
     }
     public void onClickBtn4(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "4");
+        tv.setText(tv.getText() + getString(R.string.butt4));
     }
     public void onClickBtn5(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "5");
+        tv.setText(tv.getText() + getString(R.string.butt5));
     }
     public void onClickBtn6(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "6");
+        tv.setText(tv.getText() + getString(R.string.butt6));
     }
     public void onClickBtn7(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "7");
+        tv.setText(tv.getText() + getString(R.string.butt7));
     }
     public void onClickBtn8(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "8");
+        tv.setText(tv.getText() + getString(R.string.butt8));
     }
     public void onClickBtn9(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "9");
+        tv.setText(tv.getText() + getString(R.string.butt9));
     }
     public void onClickBtn0(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + "0");
+        tv.setText(tv.getText() + getString(R.string.butt0));
     }
-    public void onClickBtnPunto(View miView)
+    public void onClickBtnPoint(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.screen) ;
-        tv.setText(tv.getText() + ".");
-        setDisablePunto();
+        tv.setText(tv.getText() + getString(R.string.buttPunto));
+        setDisablePoint();
 
 
     }
-    public void setEnablePunto(){
+    public void setEnablePoint(){
         Button punto = (Button) findViewById(R.id.buttPunto);
         punto.setEnabled(true);
 
     }
 
-    public void setDisablePunto(){
+    public void setDisablePoint(){
         Button punto = (Button) findViewById(R.id.buttPunto);
         punto.setEnabled(false);
 
     }
 
 
-        public void onDEl(View v) {
-            //Primero que nada, declaramos las variables.
-            TextView cadena = (TextView) findViewById(R.id.screen);
-           String cad = (String) cadena.getText();
-           double cadi = Double.parseDouble(cad);
+    public void onClean (View v){
 
-                cad = cad.substring(0, cad.length() - 1);
-                int ca = Integer.parseInt(cad);
-
-                TextView tv = (TextView) findViewById(R.id.screen);
-                tv.setText(cad);
-
-
-
-        }
-
-
-        public void onClean (View v){
-
-            TextView cadena = (TextView) findViewById(R.id.screen);
-            cadena.setText(0);
+                num1 = 0.0;
+                num2 = 0.0;
+            TextView tv = (TextView) findViewById(R.id.screen);
+            tv.setText("");
         }
 
 
